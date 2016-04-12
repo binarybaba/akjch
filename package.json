@@ -1,35 +1,36 @@
 {
-  "name": "akjch",
-  "version": "1.0.0",
-  "description": "akj dev challenge",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/binarybaba/akjch.git"
-  },
-  "author": "Amin Mohamed Ajani",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/binarybaba/akjch/issues"
-  },
-  "homepage": "https://github.com/binarybaba/akjch#readme",
-  "dependencies": {
-    "bluebird": "^3.3.4",
-    "body-parser": "^1.15.0",
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "express-session": "^1.13.0",
-    "passport": "^0.3.2",
-    "passport-twitter": "^1.0.4",
-    "xlsx": "^0.8.0"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-inject": "^4.0.0",
-    "gulp-nodemon": "^2.0.6",
-    "wiredep": "^4.0.0"
-  }
+    "name": "akjch",
+    "version": "1.0.0",
+    "description": "akj dev challenge",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/binarybaba/akjch.git"
+    },
+    "author": "Amin Mohamed Ajani",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/binarybaba/akjch/issues"
+    },
+    "homepage": "https://github.com/binarybaba/akjch#readme",
+    "dependencies": {
+        "bluebird": "^3.3.4",
+        "body-parser": "^1.15.0",
+        "ejs": "^2.4.1",
+        "express": "^4.13.4",
+        "express-session": "^1.13.0",
+        "passport": "^0.3.2",
+        "passport-twitter": "^1.0.4",
+        "xlsx": "^0.8.0"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-inject": "^4.0.0",
+        "gulp-nodemon": "^2.0.6",
+        "wiredep": "^4.0.0"
+    }
 }

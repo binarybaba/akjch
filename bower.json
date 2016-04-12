@@ -1,23 +1,39 @@
 {
-  "name": "akjch",
-  "description": "akj dev challenge",
-  "main": "server.js",
-  "authors": [
+    "name": "akjch",
+    "description": "akj dev challenge",
+    "main": "server.js",
+    "authors": [
     "Amin Mohamed Ajani"
   ],
-  "license": "MIT",
-  "homepage": "https://github.com/binarybaba/akjch",
-  "private": true,
-  "ignore": [
+    "license": "MIT",
+    "homepage": "https://github.com/binarybaba/akjch",
+    "private": true,
+    "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
   ],
-  "dependencies": {
-    "angular-ui-router": "^0.2.18",
-    "bootstrap": "^3.3.6",
-    "font-awesome": "fontawesome#^4.6.1"
-  }
+    "dependencies": {
+        "angular-ui-router": "^0.2.18",
+        "bootstrap": "^3.3.6",
+        "font-awesome": "fontawesome#^4.6.1"
+    },
+    "overrides": {
+        "bootstrap": {
+            "main": [
+        "less/bootstrap.less",
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css"
+      ]
+        },
+        "font-awesome": {
+            "main": [
+        "less/font-awesome.less",
+        "scss/font-awesome.scss",
+        "css/font-awesome.css"
+      ]
+        }
+    }
 }
