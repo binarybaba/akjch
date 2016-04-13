@@ -12,6 +12,8 @@ var sheet = workbook.SheetNames[0];
 var worksheet = workbook.Sheets[sheet];
 //console.log(worksheet);
 var dashboardRouter = require('./controllers/routes/dashboardRouter');
+var authRouter = require('./controllers/routes/authRouter');
+
 // TODO: add twitter oAuth, on success, store user in mongo and redirect to dashboard.ejs
 //TODO: require xlsx in dashboard controller, load and wire up angular to filter to select the list of portfolios
 //TODO: and post to dashboard to render highstock
