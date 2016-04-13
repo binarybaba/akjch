@@ -21,10 +21,10 @@ gulp.task('inject', function () {
             //and ignore this path;
     };
 
-    return gulp.src('./views/*.ejs') //pick these files
+    return gulp.src('./views/pages/*.ejs') //pick these files
         .pipe(wiredep(options))
         .pipe(gulpInject(gulpInjectSrc, gulpInjectOptions))
-        .pipe(gulp.dest('./views')); //after injecting, put it in this folder
+        .pipe(gulp.dest('./views/pages')); //after injecting, put it in this folder
 });
 
 gulp.task('serve', ['inject'], function () {
@@ -33,6 +33,11 @@ gulp.task('serve', ['inject'], function () {
         delayTime: 1,
         env: {
             'PORT': 5000,
+            'TWITTER_CONSUMER_KEY': 'JJW8pL7I6t6VVZfAfqrxIFlAq',
+            'TWITTER_CONSUMER_SECRET': 'pGYaNzlKZZ1cFahvvcmbHjY7XjnCe9r52wfWddjyXaaGYedS6k',
+            'TWITTER_TOKEN_KEY': '54500095-RligHDIbDgA1WBYadYqVLsxJkS3TXUtm0scrUmtgz',
+            'TWITTER_TOKEN_SECRET': 'ZYlBX6U3LPR5eM34qhPbqqUzm88yPIk6EN52sVDllGTny'
+
         },
         watch: jsFiles
     };
