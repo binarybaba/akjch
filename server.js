@@ -14,9 +14,15 @@ var worksheet = workbook.Sheets[sheet];
 var dashboardRouter = require('./controllers/routes/dashboardRouter');
 var authRouter = require('./controllers/routes/authRouter');
 
-// TODO: add twitter oAuth, on success, store user in mongo and redirect to dashboard.ejs
-//TODO: require xlsx in dashboard controller, load and wire up angular to filter to select the list of portfolios
-//TODO: and post to dashboard to render highstock
+/* TODO: add passport local strategy for sign up and sign in and on success, redirect to dashboard.ejs*/
+ /*TODO: try require xlsx and load data to mongo master portfolio for better access rather than reading xlsx file every time*/
+
+/*
+TODO: In Dashboard get the list of user's portfolios. if !portfolios then ask to make portfolio by sending list of portfolios from db or xlsx (omg deal with weights too).
+*/
+/* TODO: Wire up angular to deal with the filter and let user add the list to his custom portfolio -> save -> express -> model -> mongo*/
+/*TODO: compare portfolio button -> send to Highstock. Figure out a way to add a directive to angular or do it vanilla if there's no time*/
+
 
 /*console.log(workbook);*/
 
