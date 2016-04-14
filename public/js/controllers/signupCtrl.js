@@ -3,7 +3,8 @@ angular.module('akjch')
         $scope.send = function(user){
             $http({
                 method:'POST',
-                url:'/auth/signup'
-            }).then(function success(res){console.log(res);}, function err(res){console.log(res);});
+                url:'/auth/signup',
+                data: user
+            }); //removing promise for now. Redirecting from server
         }
     }]);
