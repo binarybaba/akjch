@@ -1,21 +1,19 @@
 var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 3000;
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser'); //passport will need this to store the cookie
 var session = require('express-session');
 var passport = require('passport');
-var twitterStrategy = require('passport-twitter').Strategy;
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+
+
+
 var xlsx = require('xlsx');
 var workbook = xlsx.readFile('./stocks2.xlsx');
 var sheet = workbook.SheetNames[0];
 var worksheet = workbook.Sheets[sheet];
 //console.log(worksheet);
 var dashboardRouter = require('./controllers/routes/dashboardRouter');
-var authRouter = require('./controllers/routes/authRouter.js');
-
-
-
 var authRouter = require('./controllers/routes/authRouter');
 
 /*TODO: add passport local strategy for sign up and sign in and on success, redirect to dashboard.ejs*/
@@ -27,10 +25,20 @@ var authRouter = require('./controllers/routes/authRouter');
 
 /*console.log(workbook);*/
 
-
-app.use(express.static('public')); //middleware
+/*Middlewares*/
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(cookieParser());
+app.use(session({
+    secret:"akjdeveloperchallenge",
+    saveUninitialized: false,
+    resave: true
+}));
+
+/*Refactoring all passport stuff and pulling it in from the config*/
+require('./config/passport')(app);
+
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
