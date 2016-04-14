@@ -5,7 +5,7 @@ var mongodb = require('mongodb').MongoClient;
 
 dashboardRouter.route('/')
     .get(function(req, res){
-        res.render('./pages/dashboard');
+        res.json(req.user);
     })
 
 
