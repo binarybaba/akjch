@@ -1,5 +1,6 @@
 <html ng-app="akjch">
 
+
 <head>
     <title>AKJ Mini Project</title>
     <!--bower:css-->
@@ -11,9 +12,8 @@
 </head>
 
 <body>
-
-    <a href="/auth/google">Sign in with Google</a>
-
+    <% include ../partials/nav%>
+    <div ui-view></div>
     <!--bower:js-->
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
@@ -22,7 +22,9 @@
     <!--endbower-->
     <!--inject:js-->
     <script src="/js/app.js"></script>
+    <script src="/js/controllers/signinCtrl.js"></script>
+    <script src="/js/controllers/signupCtrl.js"></script>
     <!--endinject-->
 </body>
 
-</html>
+</html ng-app="akjch">
