@@ -1637,10 +1637,10 @@ function angularInit(element, bootstrap) {
  * </div>
  *
  * <div class="alert alert-warning">
- * **Note:** Do not bootstrap the app on an element with a directive that uses {@link ng.$compile#transclusion transclusion},
+ * **Note:** Do not bootstrap the js on an element with a directive that uses {@link ng.$compile#transclusion transclusion},
  * such as {@link ng.ngIf `ngIf`}, {@link ng.ngInclude `ngInclude`} and {@link ngRoute.ngView `ngView`}.
- * Doing this misplaces the app {@link ng.$rootElement `$rootElement`} and the app's {@link auto.$injector injector},
- * causing animations to stop working and making the injector inaccessible from outside the app.
+ * Doing this misplaces the js {@link ng.$rootElement `$rootElement`} and the js's {@link auto.$injector injector},
+ * causing animations to stop working and making the injector inaccessible from outside the js.
  * </div>
  *
  * ```html
@@ -1653,7 +1653,7 @@ function angularInit(element, bootstrap) {
  *
  * <script src="angular.js"></script>
  * <script>
- *   var app = angular.module('demo', [])
+ *   var js = angular.module('demo', [])
  *   .controller('WelcomeController', function($scope) {
  *       $scope.greeting = 'Welcome!';
  *   });
@@ -1674,7 +1674,7 @@ function angularInit(element, bootstrap) {
  * * `strictDi` - disable automatic function annotation for the application. This is meant to
  *   assist in finding bugs which break minified code. Defaults to `false`.
  *
- * @returns {auto.$injector} Returns the newly created injector for this app.
+ * @returns {auto.$injector} Returns the newly created injector for this js.
  */
 function bootstrap(element, modules, config) {
   if (!isObject(config)) config = {};
@@ -13190,7 +13190,7 @@ function $LocationProvider() {
     $browser.onUrlChange(function(newUrl, newState) {
 
       if (isUndefined(beginsWith(appBaseNoFile, newUrl))) {
-        // If we are navigating outside of the app then force a reload
+        // If we are navigating outside of the js then force a reload
         $window.location.href = newUrl;
         return;
       }
@@ -18602,7 +18602,7 @@ function $SnifferProvider() {
   this.$get = ['$window', '$document', function($window, $document) {
     var eventSupport = {},
         // Chrome Packaged Apps are not allowed to access `history.pushState`. They can be detected by
-        // the presence of `chrome.app.runtime` (see https://developer.chrome.com/apps/api_index)
+        // the presence of `chrome.js.runtime` (see https://developer.chrome.com/apps/api_index)
         isChromePackagedApp = $window.chrome && $window.chrome.app && $window.chrome.app.runtime,
         hasHistoryPushState = !isChromePackagedApp && $window.history && $window.history.pushState,
         android =
