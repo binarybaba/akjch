@@ -16,7 +16,7 @@ var worksheet = workbook.Sheets[sheet];
 var dashboardRouter = require('./controllers/routes/dashboardRouter');
 var authRouter = require('./controllers/routes/authRouter');
 
-/*TODO: add passport local strategy for sign up and sign in and on success, redirect to dashboard.ejs*/
+
 /*TODO: In Dashboard get the list of user's portfolios. if !portfolios then ask to make portfolio by sending list of portfolios from db or xlsx (omg deal with weights too). */
 /*TODO: try require xlsx and load data to mongo master portfolio for better access rather than reading xlsx file every time*/
 /*TODO: Wire up angular to deal with the filter and let user add the list to his custom portfolio -> save -> express -> model -> mongo*/
@@ -47,7 +47,6 @@ app.get('/', function (req, res) {
     res.render('pages/index');
     /*res.json(worksheet) <- testing*/
 });
-
 
 
 
