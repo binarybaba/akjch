@@ -1,0 +1,12 @@
+<div class="col-sm-6">
+    <h3>Previous Portfolios</h3>
+    <ul ng-repeat="portfolio in portfolios">
+        <li> Portfolio Name: {{portfolio.name}}</li>
+        <ul  ng-repeat = "set in portfolio">
+            <li>Set: {{set}}</li>
+        </ul>
+    </ul>
+</div>
+<div class="col-sm-6">
+        <h3>Add Portfolios</h3>
+</div>
