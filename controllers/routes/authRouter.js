@@ -1,6 +1,8 @@
-var express = require('express');
-var authRouter = express.Router();
-var mongodb = require('mongodb').MongoClient;
+var express = require('express'),
+    authRouter = express.Router(),
+    mongodb = require('mongodb').MongoClient,
+    passport = require('passport');
+
 
 
 
@@ -13,7 +15,9 @@ var mongodb = require('mongodb').MongoClient;
                 var Users = db.collection('users');
                 var user = {
                     username: req.body.uname,
-                    password: req.body.pass
+                    password: req.body.pass,
+                    email:req.body.email,
+                    name:req.body.name
                 };
                 /*TODO: find the username in the database, if exists, redirect else proceed*/
                     Users.findOne({"username":user.username}, function(err, result){
@@ -27,11 +31,11 @@ var mongodb = require('mongodb').MongoClient;
                              /*res.render('pages/profile', {
                              name: results.ops[0].username
                              }) Forget this one*/
-                                 /*res.redirect('/dashboard');*/
+                                 res.redirect('/dashboard');
                                  /*Add user to request and redirect to dashboard. WORKS!*/
 
                                  //Test code experimenting now something
-                             res.redirect('/auth/profile');
+                             /*res.redirect('/auth/profile');*/
                              })
                              });
 
@@ -39,14 +43,18 @@ var mongodb = require('mongodb').MongoClient;
                     })
 
             });
-            
+
             /*res.send('cool');*/
         })
-    authRouter.route('/signin')
-        .post(function(req, res){
-            var url = 'mongodb://'
 
-        })
+/*TODO: handle err. breaks when user signs in with invalid username/pass. Maybe do it manually rather than handing it over to passport?*/
+    authRouter.route('/signin')
+        .post(passport.authenticate('local', {
+            failureRedirect:'/signup',
+        }), function(req, res){
+                /*res.redirect('/auth/profile');*/
+            res.redirect('/dashboard');
+        });
 
 
 
