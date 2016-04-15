@@ -39,8 +39,7 @@ var mongodb = require('mongodb').MongoClient;
                     })
 
             });
-
-
+            
             /*res.send('cool');*/
         })
     authRouter.route('/signin')
