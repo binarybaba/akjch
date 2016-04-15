@@ -23,8 +23,17 @@ dashboardRouter.route('/logout')
         res.redirect('/');
     });
 
+dashboardRouter.route('/portfolio')
+    .get(function(req, res){
+        if(!req.user){
+            res.json(req.user.portfolio);
+        }
+        else{
+            res.redirect('/');
+        }
+    })
 
-
+    /*TODO: Add post route and update to model*/
 
 
 
