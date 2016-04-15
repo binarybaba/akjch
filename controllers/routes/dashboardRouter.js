@@ -5,8 +5,15 @@ var mongodb = require('mongodb').MongoClient;
 
 dashboardRouter.route('/')
     .get(function(req, res){
-        res.json(req.user);
-    })
+        if(req.user) {
+            res.render('pages/dashboard', {
+                name: req.user.username
+            })
+        }
+        else{
+            res.redirect('/');
+        }
+    });
 
 
 

@@ -2,10 +2,10 @@ var passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 module.exports = function(){
     passport.use(new LocalStrategy({
-        usernameField:'username', // id/name of the field in the view
-        passwordField:'password' //id/name of the field in the view
+        usernameField:'uname', // id/name of the field in the view
+        passwordField:'pass' //id/name of the field in the view
     }, function(username, password, done){
-        //goto dbase and check username and stuff
+        //this function determines validation. goto dbase and check username and stuff
         var user = {
             username:username,
             password:password
