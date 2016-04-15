@@ -12,12 +12,24 @@
 
 </head>
 <body>
-<h2><span id="user"><%=name%></span>'s Dashboard</h2>
+<header>
+    <nav class="container-fluid">
+        <% include ../partials/subnav.ejs%>
+    </nav>
+    <h2><span id="user"><%=name%></span>'s Dashboard</h2>
+</header>
+<section class="portfolio container-fluid">
+    <div class="row">
+        <div ui-view></div>
+    </div>
+</section>
 <br>
     Username: <%=user%>
     <br>
     id: <%=id%>
+<section class="portfolio container-fluid">
 
+</section>
 
 <a href="/dashboard/logout">Logout</a>
 <!--bower:js-->
@@ -28,6 +40,7 @@
 <!--endbower-->
 <!--inject:js-->
 <script src="/js/app.js"></script>
+<script src="/js/controllers/portfolioCtrl.js"></script>
 <script src="/js/controllers/signinCtrl.js"></script>
 <script src="/js/controllers/signupCtrl.js"></script>
 <!--endinject-->
