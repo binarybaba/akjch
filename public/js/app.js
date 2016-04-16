@@ -19,6 +19,11 @@ angular.module('akjch', ['ui.router'])
                 templateUrl:'partials/signin.html',
                 controller:'signinCtrl'
             })
+            .state('portfolios', {
+                url:'/portfolios',
+                templateUrl:'/partials/portfolios.html',
+                controller:'portfoliosCtrl'
+            })
 
     })
 
