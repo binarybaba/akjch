@@ -4,6 +4,7 @@
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+.idea/workspace.xml
 *.log
 
 # Sensitive or high-churn files:
