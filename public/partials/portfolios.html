@@ -1,13 +1,3 @@
-<!--<div class="col-sm-3">
-    <h3>Previous Portfolios</h3>
-    <ul ng-repeat="portfolio in userPortfolios">
-        <li> Portfolio Name: {{portfolio.name}}</li>
-        <ul  ng-repeat = "set in portfolio">
-            <li>Set: {{set}}</li>
-        </ul>
-    </ul>
-</div>-->
-
 <div class="col-sm-6">
     <h3>Add portfolios</h3>
     <input type="text" ng-model="portfolioName" placeholder="name your portfolio..">
@@ -24,11 +14,12 @@
 
 </div>
 
-<!--User's Added portfolios-->
+<!--User's Portfolios-->
 <div class="col-sm-3">
     <h3>Your Portfolios</h3>
     <ul ng-repeat = "portfolio in userPortfolios">
         <li>{{portfolio.name}}</li>
         <li ng-repeat = "stock in portfolio.stocks">{{stock}}</li>
     </ul>
+    <a href="#!">Update</a>
 </div>
