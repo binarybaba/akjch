@@ -5,14 +5,10 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser'); //passport will need this to store the cookie
 var session = require('express-session');
 var passport = require('passport');
+require('./config/worksheet/load.js')();
 
 
 
-var xlsx = require('xlsx');
-var workbook = xlsx.readFile('./stocks2.xlsx');
-var sheet = workbook.SheetNames[0];
-var worksheet = workbook.Sheets[sheet];
-console.log(worksheet);
 var dashboardRouter = require('./controllers/routes/dashboardRouter');
 var authRouter = require('./controllers/routes/authRouter');
 
