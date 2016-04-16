@@ -1,7 +1,7 @@
 angular.module('akjch')
     .controller('portfoliosCtrl', ['$scope', function($scope){
         $scope.portfolioName='';
-        var portfolioStocks =[];
+        
 
         //pulled in from user's database Wire up service to send the list.
         $scope.userPortfolios= [
@@ -78,6 +78,11 @@ angular.module('akjch')
              var pf = findPortfolio();
             //if user is updating a portfolio
             if(pf.length != 0){
+                $scope.userPortfolios.map(function(elem){
+                    if(elem.name === $scope.portfolioName){
+                        elem.stocks.push(stock);
+                    }
+                })
 
             }
             else {
