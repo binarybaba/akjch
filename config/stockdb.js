@@ -1,6 +1,6 @@
 module.exports = function(){
     var xlsx = require('xlsx'),
-        workbook = xlsx.readFile('./stocks2.xlsx'),
+        workbook = xlsx.readFile('./stocks2.xlsx'),// TODO: replace with stocks.xlsx in production
         sheet = workbook.SheetNames[0],
         worksheet = workbook.Sheets[sheet],
         ref = '!ref',
@@ -12,12 +12,15 @@ module.exports = function(){
         newSheet.push({
             "name":worksheet["B"+i].v,
             "ticker":worksheet["A"+i].v,
-            "weight":Math.random() * (100 -10) + 10 //random weight
+            "weight":Math.random() * (100 -10) + 10 //random weight because you guys said use random weights
         });
     }
-    console.log(newSheet);
-    //TODO: require model/stocks/load(newsheet)
-}
+    require('./pushtodb.js')(newSheet);
+    
+    
+};
 
 
 
+    
+            
