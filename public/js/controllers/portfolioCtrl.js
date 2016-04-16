@@ -1,7 +1,10 @@
 angular.module('akjch')
-    .controller('portfoliosCtrl', ['$scope', function($scope){
+    .controller('portfoliosCtrl', ['$scope', 'stockFactory', function($scope, stockFactory){
         $scope.portfolioName='';
-        
+        stockFactory.async()
+            .then(function(data){
+                $scope.MasterStocks = data;
+        });
 
         //pulled in from user's database Wire up service to send the list.
         $scope.userPortfolios= [
@@ -20,7 +23,7 @@ angular.module('akjch')
         ];
 
         //list of all portfolios pulled in from service.
-        $scope.MasterStocks = [
+         /*   $scope.MasterStocks = [
             {
                 "ticker":"SPYV",
                 "name":"S&P 500"
@@ -65,11 +68,11 @@ angular.module('akjch')
                 "ticker":"ABB",
                 "name":"ABB Ltd"
             }
-];
+];*/
 
          function findPortfolio(){
               var filtered = $scope.userPortfolios.filter(function(val){
-                  return val.name === $scope.portfolioName;
+                  return val.name == $scope.portfolioName;
               });
              return filtered;
          }
@@ -79,7 +82,7 @@ angular.module('akjch')
             //if user is updating a portfolio
             if(pf.length != 0){
                 $scope.userPortfolios.map(function(elem){
-                    if(elem.name === $scope.portfolioName){
+                    if(elem.name == $scope.portfolioName){
                         elem.stocks.push(stock);
                     }
                 })
@@ -119,6 +122,6 @@ angular.module('akjch')
             
             /*$scope.userPortfolios.push(newPortfolio);*/
 
-        }
+        };
         console.log('Portfolio controller working');
     }]);
