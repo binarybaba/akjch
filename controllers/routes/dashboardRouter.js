@@ -25,7 +25,7 @@ dashboardRouter.route('/logout')
         res.redirect('/');
     });
 
-dashboardRouter.route('/portfolios')
+dashboardRouter.route('/stocklist')
     .get(function(req, res){
         if(req.user){
             /*res.json(req.user.portfolio);*/
