@@ -7,8 +7,7 @@
             <ul>
                 <li>{{stock.ticker}}</li>
                 <li>{{stock.name}}</li>
-                <li><a href="#!" ng-click="addP(stock,portfolioName)">Add</a></li>
-                <li><a href="#!">Remove</a></li>
+                <li><a href="#!" ng-click="addPortfolio(stock,portfolioName)">Add</a></li>
             </ul>
         </li>
     </ul>
@@ -27,5 +26,5 @@
                 </ul>
             </div>
         </ul>
-    <a href="#!">Update</a>
+    <a href="#!" ng-if="tempPortfolios.length" ng-click="updatePortfolios()">Update</a>
 </div>
