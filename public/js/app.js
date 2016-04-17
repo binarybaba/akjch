@@ -1,4 +1,4 @@
-angular.module('akjch', ['ui.router'])
+angular.module('akjch', ['ui.router', 'angular-toArrayFilter'])
 
 
 

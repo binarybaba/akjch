@@ -2,24 +2,30 @@
     <h3>Add portfolios</h3>
     <input type="text" ng-model="portfolioName" placeholder="name your portfolio..">
     <input type="text" ng-model="searchText" placeholder="begin typing...">
-    <ul ng-repeat="stock in MasterStocks | filter: searchText">
+    <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
         <li>
             <ul>
                 <li>{{stock.ticker}}</li>
                 <li>{{stock.name}}</li>
-                <li><a href="#!" ng-click="addPortfolio(stock.ticker)">Add</a></li>
+                <li><a href="#!" ng-click="addP(stock,portfolioName)">Add</a></li>
+                <li><a href="#!">Remove</a></li>
             </ul>
         </li>
     </ul>
 
 </div>
 
-<!--User's Portfolios-->
+<!--User's Unsaved Portfolios-->
 <div class="col-sm-3">
-    <h3>Your Portfolios</h3>
-    <ul ng-repeat = "portfolio in userPortfolios">
-        <li>{{portfolio.name}}</li>
-        <li ng-repeat = "stock in portfolio.stocks">{{stock}}</li>
-    </ul>
+    <ul ng-repeat = "portfolio in tempPortfolios">
+            <div class="temp-portfolio" style="background-color: #eee">
+                <a href="#" ng-click="removePortfolio(portfolio.name)">Remove</a>
+                <li>{{portfolio.name}}</li>
+                <ul ng-repeat = "stock in portfolio.stocks">
+                    <li>{{stock}}</li>
+                    <li><a href="#" ng-click="removeStock(portfolio.name,stock)">Remove</a></li>
+                </ul>
+            </div>
+        </ul>
     <a href="#!">Update</a>
 </div>

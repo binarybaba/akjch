@@ -1,24 +1,18 @@
 angular.module('akjch')
     .controller('portfoliosCtrl', ['$scope', 'stockFactory', function($scope, stockFactory){
-        $scope.portfolioName='';
-        stockFactory.async()
+
+
+        /*Populating view with stock list from db*/
+        stockFactory.getStockList()
             .then(function(data){
                 $scope.MasterStocks = data;
         });
 
         //pulled in from user's database Wire up service to send the list.
-        $scope.userPortfolios= [
+        $scope.tempPortfolios= [
             {
-                "name":"P1",
-                "stocks":['a','b']
-            },
-            {
-                "name":"P2",
-                "stocks":['c','d']
-            },
-            {
-                "name":"P3",
-                "stocks":['e','f']
+                "name":"dummyPortfolios",
+                "stocks":['ABC','NASDAQ']
             }
         ];
 
@@ -70,33 +64,49 @@ angular.module('akjch')
             }
 ];*/
 
-         function findPortfolio(){
-              var filtered = $scope.userPortfolios.filter(function(val){
+        function findPortfolio(){
+              var filtered = $scope.tempPortfolios.filter(function(val){
                   return val.name == $scope.portfolioName;
               });
              return filtered;
          }
 
+        $scope.addP = function(stock,portfolio){
+            //TODO: if portfolio exists { 
+            //TODO:      if stock !exist { 
+            //TODO:             push stock.ticker
+            //TODO:            }else {
+            //TODO:                  do nothing
+            //TODO:            } 
+            //TODO:    else {
+            //TODO:          add new portfolio with stock
+            //TODO:         }
+            
+            console.log(stock.ticker);
+            console.log(portfolio);
+        }
+
+
+
         $scope.addPortfolio = function(stock){
              var pf = findPortfolio();
-            //if user is updating a portfolio
+            //if the portfolio name is already present ie if the user is updating a portfolio
+
             if(pf.length != 0){
-                $scope.userPortfolios.map(function(elem){
+                $scope.tempPortfolios.map(function(elem){
                     if(elem.name == $scope.portfolioName){
-                        elem.stocks.push(stock);
+                        elem.stocks.push(stock.ticker);
                     }
                 })
-
             }
             else {
                  var newPortfolio = {
                      "name":$scope.portfolioName,
                      "stocks":[]
                  }
-                newPortfolio.stocks.push(stock);
-                $scope.userPortfolios.push(newPortfolio);
+                newPortfolio.stocks.push(stock.ticker);
+                $scope.tempPortfolios.push(newPortfolio);
              }
-
 
 
 
@@ -111,17 +121,38 @@ angular.module('akjch')
             }
             newPortfolio.stocks.push(stock);*/
 
-            /*$scope.userPortfolios.name=$scope.name;
-            $scope.userPortfolios*/
-            /*$scope.userPortfolios.map(function(portfolio){
+            /*$scope.tempPortfolios.name=$scope.name;
+            $scope.tempPortfolios*/
+            /*$scope.tempPortfolios.map(function(portfolio){
                 //if user is udating already present portfolio
                 if(portfolio.name.toLowerCase() == $scope.portfolioName.toLowerCase()){
                     portfolio.stocks.push(stock);
                 }
             });*/
             
-            /*$scope.userPortfolios.push(newPortfolio);*/
+            /*$scope.tempPortfolios.push(newPortfolio);*/
 
         };
-        console.log('Portfolio controller working');
+
+        $scope.removeStock = function(portfolio,stock){
+            $scope.tempPortfolios.map(function(elem){
+                if(elem.name == portfolio){
+                    elem.stocks.map(function(stkElem){
+                        if(stkElem === stock){
+                            var index = elem.stocks.indexOf(stkElem)
+                            elem.stocks.splice(index,1);
+                        }
+                    })
+                }
+            })
+        };
+        $scope.removePortfolio = function(name){
+            $scope.tempPortfolios.map(function(elem){
+                if(elem.name === name){
+                    var index = $scope.tempPortfolios.indexOf(elem);
+                    $scope.tempPortfolios.splice(index,1);
+                }
+            })
+        };
+
     }]);

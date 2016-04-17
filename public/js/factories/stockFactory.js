@@ -1,11 +1,12 @@
 angular.module('akjch')
     .factory('stockFactory', ['$http', function($http){
         var stockSvc = {
-            async: function(){
+            getStockList: function(){
                 var promise = $http({
                     url: '/dashboard/stocklist',
                     method:'GET'
                 }).then(function(response){
+                        console.log(response);
                         return response.data;
                     });
                 return promise;
