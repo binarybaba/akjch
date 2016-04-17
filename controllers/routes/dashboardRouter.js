@@ -56,6 +56,15 @@ dashboardRouter.route('/user/portfolios')
             res.send('users portfolios');
         }
     })
+    .post(function(req, res){
+        if(req.user){
+            console.log(req.body); // [{ name: 'this', stocks: [ 'DDD', 'WUBA' ] }]
+            var url = 'mongodb://localhost:27017/akjch';
+            
+
+            res.send('got it');
+        }
+    })
     /*TODO: Add post route and update to model*/
 
 
