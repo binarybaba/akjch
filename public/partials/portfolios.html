@@ -28,3 +28,19 @@
         </ul>
     <a href="#!" ng-if="tempPortfolios.length" ng-click="updatePortfolios()">Update</a>
 </div>
+<div class="col-sm-3">
+    <h3 ng-if="userPortfolios.length">Your Portfolios</h3>
+    <h4 ng-if="!userPortfolios.length">You do not have any Portfolios.</h4>
+    <hr>
+    <h4 ng-if="!userPortfolios.length">Let's begin by adding one</h4>
+
+    <ul ng-repeat = "portfolio in userPortfolios">
+        <div class="user-portfolio" style="background-color: #eee">
+            <a href="#!" ng-click ="deletePortfolio(portfolio.name)">X</a>
+            <li>{{portfolio.name}}</li>
+            <ul ng-repeat ="stock in portfolio.stocks">
+                <li>{{stock}}</li>
+            </ul>
+        </div>
+    </ul>
+</div>
