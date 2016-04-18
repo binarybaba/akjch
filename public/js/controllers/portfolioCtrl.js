@@ -1,5 +1,5 @@
 angular.module('akjch')
-    .controller('portfoliosCtrl', ['$scope', 'stockFactory', '$http', function($scope, stockFactory, $http){
+    .controller('portfoliosCtrl', ['$scope', 'stockFactory', 'portfolioFactory','$http', function($scope, stockFactory, portfolioFactory, $http){
         function findPortfolio(portf){
             var filtered = $scope.tempPortfolios.filter(function(val){
                 return val.name === portf;
@@ -17,7 +17,15 @@ angular.module('akjch')
             });
             return results;
         }
-
+        
+        /*Populating view with list of users portfolios*/
+        var updateUserPortfolio = function(){
+            portfolioFactory.getPortfolioList()
+                .then(function(data){
+                    $scope.userPortfolios = data;
+                })
+        }
+        updateUserPortfolio();
         /*Populating view with stock list from db*/
         stockFactory.getStockList()
             .then(function(data){
@@ -79,16 +87,34 @@ angular.module('akjch')
                 }
             })
         };
-        //TODO : make update link to post tempPortfolios to service->model  then reset tempPortfolios immediately
+
+        $scope.deletePortfolio = function(name){
+            portfolioFactory.deletePortfolio(name)
+                .then(function(response){
+                    console.log('Success! '+response.data);
+                    updateUserPortfolio();
+                }, function err(response){
+                    console.log('something went wrong: '+response.data);
+                })
+        }
         $scope.updatePortfolios = function(){
-            $http({
+            portfolioFactory.postPortfolios($scope.tempPortfolios)
+                .then(function(response){
+                    console.log('Success!');
+                    $scope.tempPortfolios=[];
+                    updateUserPortfolio();
+                }, function(response){
+                    console.log('Something went wrong: '+response.data);
+                });
+            /*$http({
                 url:'/dashboard/user/portfolios',
                 method:'POST',
                 data:$scope.tempPortfolios
             }).then(function(response){
                 console.log(response);
-                $scope.tempPortfolios=[]; 
-            })
+                $scope.tempPortfolios=[];
+            })*/
 
         }
+
     }]);
