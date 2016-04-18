@@ -1,46 +1,54 @@
-<div class="col-sm-6">
-    <h3>Add portfolios</h3>
-    <input type="text" ng-model="portfolioName" placeholder="name your portfolio..">
-    <input type="text" ng-model="searchText" placeholder="begin typing...">
-    <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
-        <li>
-            <ul>
-                <li>{{stock.ticker}}</li>
-                <li>{{stock.name}}</li>
-                <li><a href="#!" ng-click="addPortfolio(stock,portfolioName)">Add</a></li>
-            </ul>
-        </li>
-    </ul>
+<div class=" addPortfolios col-sm-3">
+    <h4>Add portfolios</h4>
+
+    <input type="text" name="portfolioName" ng-model="portfolioName" placeholder="Begin by typing your portfolio name">
+    <input type="text" ng-model="searchText" placeholder="type to search">
+    <div class="stocks">
+        <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
+            <li>
+                <ul class="stock">
+                    <li class="stock-ticker">{{stock.ticker}}</li>
+                    <li class="stock-name"><em>{{stock.name}}</em></li>
+                    <li><a href="#!" ng-if= "portfolioName" ng-click="addPortfolio(stock,portfolioName)"><i class="fa fa-plus" aria-hidden="true"></i> Add to
+                        <br>{{portfolioName}}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 
 </div>
 
 <!--User's Unsaved Portfolios-->
-<div class="col-sm-3">
+<div class="col-sm-6 unsaved">
     <ul ng-repeat = "portfolio in tempPortfolios">
-            <div class="temp-portfolio" style="background-color: #eee">
-                <a href="#" ng-click="removePortfolio(portfolio.name)">Remove</a>
-                <li>{{portfolio.name}}</li>
-                <ul ng-repeat = "stock in portfolio.stocks">
-                    <li>{{stock}}</li>
-                    <li><a href="#" ng-click="removeStock(portfolio.name,stock)">Remove</a></li>
+            <div class="temp-portfolio">
+                <a class="deleteP" href="#" ng-click="removePortfolio(portfolio.name)"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+                <li class="portfolio-nameU">{{portfolio.name}}</li>
+                <ul class="stockU" ng-repeat = "stock in portfolio.stocks">
+                    <li class="stock-tickerU">{{stock}}</li>
+                    <li class="remove-stockU"><a href="#" ng-click="removeStock(portfolio.name,stock)"><i class="fa fa-times" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </ul>
-    <a href="#!" ng-if="tempPortfolios.length" ng-click="updatePortfolios()">Update</a>
+    <a class="update" href="#!" ng-if="tempPortfolios.length" ng-click="updatePortfolios()"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save All</a>
 </div>
-<div class="col-sm-3">
+
+<!--User's Saved portfolios-->
+<div class="saved-portfolios col-sm-3">
     <h3 ng-if="userPortfolios.length">Your Portfolios</h3>
-    <h4 ng-if="!userPortfolios.length">You do not have any Portfolios.</h4>
+    <h4 class="alert-user"ng-if="!userPortfolios.length">You do not have any Portfolios.</h4>
     <hr>
     <h4 ng-if="!userPortfolios.length">Let's begin by adding one</h4>
 
-    <ul ng-repeat = "portfolio in userPortfolios">
-        <div class="user-portfolio" style="background-color: #eee">
-            <a href="#!" ng-click ="deletePortfolio(portfolio.name)">X</a>
-            <li>{{portfolio.name}}</li>
-            <ul ng-repeat ="stock in portfolio.stocks">
-                <li>{{stock}}</li>
+    <div class="user-portfolio">
+    <ul class="user-portfolios" ng-repeat = "portfolio in userPortfolios">
+
+            <a class="deletePortfolio"href="#!" ng-click ="deletePortfolio(portfolio.name)"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
+            <li class="userP">{{portfolio.name}}</li>
+            <ul class="userstocks" ng-repeat ="stock in portfolio.stocks">
+                    <li class="userstock">{{stock}}</li>
             </ul>
-        </div>
+
     </ul>
+    </div>
 </div>

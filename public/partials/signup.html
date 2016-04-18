@@ -1,8 +1,8 @@
 <form name="signup" action="/auth/signup" method="POST">
     <input type="text" name="uname" id="username" placeholder="username..." required  autocomplete="off">
-    <input type="password" name="pass" id="password" placeholder="password..." autocomplete="off">
-    <input type="email" name="email" id="email" placeholder="email" autocomplete="off">
-    <input type="name" name="name" id="name" placeholder="your full name" autocomplete="off">
+    <input type="password" name="pass" id="password" placeholder="password..." required autocomplete="off">
+    <input type="email" name="email" id="email" placeholder="email" required autocomplete="off">
+    <input type="name" name="name" id="name" placeholder="your full name" required autocomplete="off">
     <input type="submit" value ="Go!">
 </form>
 
@@ -12,7 +12,7 @@
 
 
 <!--
-TODO: replace ng-form with vanilla html form
+
 <form ng-submit="send(user)">
 <input type="text" placeholder="enter username" ng-model="user.name">
 <input type="password" placeholder="enter password" ng-model="user.password">

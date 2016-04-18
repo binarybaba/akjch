@@ -1,12 +1,34 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:500,400,300);
+/*palette from http://www.colourlovers.com/palette/59867/Blown_Entrepreneur*/
 body{
+    -webkit-font-smoothing: antialiased;
     font-family: 'Open Sans';
     font-weight: 400;
     background:#fafafa;
 }
 h1,h2,h3,h4,h5,h6{
+    font-family: 'Open Sans';
     font-weight: 500;
 }
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #BDB8AD;
+
+}
+
+
+header{
+    background-color: #C6D4E1;
+    height:200px;
+}
+
+
 .subnav a{
     color: #384047;
     text-decoration: none;
@@ -28,8 +50,8 @@ h1,h2,h3,h4,h5,h6{
 .subnav ul li a {
     padding:20px;
     height:30px;
-
     margin-right:10px;
+    border: 2px solid transparent;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -41,8 +63,7 @@ h1,h2,h3,h4,h5,h6{
 
 }
 .subnav ul li a:hover{
-    background-color:#384047;
-    color:#edd84e;
+    border: 2px solid #44749D;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     -ms-transition: all 0.2s;
@@ -50,4 +71,227 @@ h1,h2,h3,h4,h5,h6{
     transition: all 0.2s;
 }
 
+input[type=text]{
+    display: block;
+    margin-top:20px;
+    width:100%;
+    height:40px;
+    padding-left:12px;
+    outline:none;
+    border:1px solid BDB8AD;
 
+
+
+}
+
+
+
+
+/*===================ADD PORTFOLIO=================*/
+
+.addPortfolios{
+    padding-top:20px;
+    padding-left:40px;
+
+
+}
+.stocks{
+    height:500px;
+    overflow-y: scroll;
+
+}
+
+
+.stocks ul,
+.unsaved ul{
+
+    list-style-type: none;
+    padding:0;
+    padding-top:10px;
+
+
+
+}
+.stock{
+    position:relative;
+
+}
+.stock:hover{
+    background-color: #EBE7E0;
+}
+.stock .stock-ticker{
+    display: block;
+    color:#44749D;
+    font-size: 28px;
+    padding-left:20px;
+}
+.stock-name{
+    color:#BDB8AD;
+    padding-left:10px;
+    padding-bottom:10px;
+
+}
+.stock > li:last-child{
+    position: absolute;
+    top:10;
+    left:50%;
+
+}
+.stock > li:last-child a,
+.stock > li:last-child a:active,
+.stock > li:last-child a:visited,
+.stock > li:last-child a:focus{
+    color: #C6D4E1;
+    text-decoration: none;
+}
+.stock > li:last-child a:hover{
+    color:#44749D;
+}
+
+/*===================ADD PORTFOLIO=================*/
+
+
+/*======================UNSAVED PORTFLIOS===========*/
+.unsaved{
+margin-top:70px;
+
+    height:600px;
+
+}
+.temp-portfolio{
+    padding-bottom:70px;
+    padding-left:20px;
+    padding-top:20px;
+    position: relative;
+}
+.temp-portfolio:after{
+    content:'';
+    display: block;
+    width:10px
+    height:4px;
+    border-bottom:1px solid #BDB8AD;
+    border-radius: 10px;
+    background-color:black;
+    position: relative;;
+}
+.unsaved > ul> li > a,
+.unsaved > ul> li > a:active,
+.unsaved > ul> li > a:visited,
+.unsaved > ul> li > a:focus{
+    color: #C6D4E1;
+    text-decoration: none;
+}
+.unsaved > a.deleteP:hover{
+     color:#44749D;
+}
+.unsaved > .stock{
+    list-style-type: none;
+    padding:0;
+}
+.deleteP{
+    position: absolute;
+    top:30;
+    left:80%;
+}
+.remove-stockU a,
+.remove-stockU a:active,
+.remove-stockU a:hover,
+.remove-stockU a:visited,
+.remove-stockU a:focus,
+.deleteP:hover,
+.deleteP:active,
+.deleteP:visited,
+.deleteP:focus{
+    color:indianred;
+}
+
+.portfolio-nameU{
+    font-size:36px;
+    text-transform: capitalize;
+    font-weight: 300;
+
+}
+.portfolio-nameU:before{
+    content:'Unsaved Portflio -';
+    font-size: 12px;
+    position: absolute;
+    top:0;
+    left:20px;
+    color:darkred;
+}
+/*.portfolio-nameU:after{
+    content:'';
+    display: block;
+    width:10px
+    height:4px;
+    border-bottom:1px solid black;
+    background-color:black;
+    position: relative;;
+}*/
+.stockU{
+    list-style-type: none;
+    float:left;
+}
+.stockU > li{
+    float: left;
+
+}
+.stockU > li > a{
+    padding-right:20px;
+    padding-left:6px;
+}
+
+a.update,
+a.update:hover,
+a.update:active,
+a.update:focus,
+a.update:visited{
+    color: forestgreen;
+    text-decoration: none;
+}
+
+/*======================UNSAVED PORTFLIOS===========*/
+
+
+/*================== SAVED PORTFOLIOS==================*/
+.saved-portfolios{
+    margin-top:40px;
+}
+
+.user-portfolios,
+.userstocks{
+    list-style-type: none;
+    padding:0;
+    padding-bottom:20px;
+
+
+}
+
+.userP{
+    font-size: 24px;
+    font-width:400;
+}
+.userstock {
+
+    float:left;
+    font-weight:300;
+    padding-right: 4px;
+}
+.user-portfolios{
+    position: relative;
+}
+a.deletePortfolio,
+a.deletePortfolio:hover,
+a.deletePortfolio:active,
+a.deletePortfolio:visited,
+a.deletePortfolio:focus{
+    color:indianred;
+    text-decoration: none;
+    position:absolute;
+    top:6px;
+    left:70%;
+}
+.alert-user{
+    margin-top:40px;
+}
+/*================== SAVED PORTFOLIOS==================*/
