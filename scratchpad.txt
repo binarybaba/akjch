@@ -1,3 +1,0 @@
-for(var cell in sheet){
-console.log(sheet[cell]["h"])
-}
