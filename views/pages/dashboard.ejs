@@ -1,7 +1,7 @@
 <html ng-app="akjch">
 <head>
     <title>
-        Dashboard
+        <%=name.split(' ')[0]%>'s Dashboard
     </title>
         <!--bower:css-->
         <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css" />
@@ -17,22 +17,23 @@
     <nav class="container-fluid">
         <% include ../partials/subnav.ejs%>
     </nav>
-    <h2><span id="user"><%=name%></span>'s Dashboard</h2>
+    <h2 class="text-center"><span id="user"><%=name%></span>'s Dashboard</h2>
+
 </header>
 <section class="portfolio container-fluid">
     <div class="row">
         <div ui-view></div>
     </div>
 </section>
-<br>
-    Username: <%=user%>
+<!--<br>
+    Username: =user
     <br>
-    id: <%=id%>
+    id: =id-->
 <section class="portfolio container-fluid">
 
 </section>
 
-<a href="/dashboard/logout">Logout</a>
+<!--<a href="/dashboard/logout">Logout</a>-->
 <!--bower:js-->
 <script src="../lib/angular/angular.js"></script>
 <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
@@ -42,11 +43,11 @@
 <!--endbower-->
 <!--inject:js-->
 <script src="/js/app.js"></script>
-<script src="/js/factories/portfolioFactory.js"></script>
-<script src="/js/factories/stockFactory.js"></script>
 <script src="/js/controllers/portfolioCtrl.js"></script>
 <script src="/js/controllers/signinCtrl.js"></script>
 <script src="/js/controllers/signupCtrl.js"></script>
+<script src="/js/factories/portfolioFactory.js"></script>
+<script src="/js/factories/stockFactory.js"></script>
 <!--endinject-->
 
 </body>
