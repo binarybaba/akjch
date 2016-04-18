@@ -12,8 +12,7 @@ require('./config/stockdb.js')();
 var dashboardRouter = require('./controllers/routes/dashboardRouter'),
     authRouter = require('./controllers/routes/authRouter');
 
-/*TODO: In Dashboard get the list of user's portfolios. if !portfolios then ask to make portfolio by sending list of portfolios from db or xlsx (omg deal with weights too). */
-/*TODO: Wire up angular to deal with the filter and let user add the list to his custom portfolio -> save -> express -> model -> mongo*/
+
 /*TODO: compare portfolio button -> send to Highstock. Figure out a way to add a directive to angular or do it vanilla if there's no time*/
 
 /*Wiring up middlewares*/

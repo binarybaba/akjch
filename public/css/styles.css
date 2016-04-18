@@ -1,0 +1,130 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,900|Montserrat);
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    font-family:'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #fafafa;
+}
+
+a,
+a:hover,
+a:visited,
+a:active{
+    color: #3d3d3d;
+    text-decoration: none;
+
+}
+#underlay{
+    width:100%;
+    height:100vh;
+
+    background-image:url('/img/city-sky-bg.jpg');
+    background-repeat: no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+
+.entry.row > .intro{
+    margin-top:10%;
+    margin-left:0px;
+}
+
+.entry.row > .intro .bold-text{
+    font-family: 'Raleway', serif;
+    font-weight:900;
+    font-size:48px;
+    color:#323330;
+    text-transform: uppercase;
+
+}
+.bold-text{
+    width:200px;
+    height:70px;
+    padding-top:20px;
+    padding-left:10px;
+    background-color: #edd84e;
+
+}
+.entry.row > .intro .subtext{
+    font-family:'Montserrat', sans-serif;
+    color:#edd84e;
+    margin-left:87px;
+    margin-top:10px;
+}
+
+.sign-box{
+    height:310px;
+    margin-top:10%;
+    color: #384047;
+    background-color: transparent;
+
+
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=name]:focus{
+    outline:none;
+    border-left:2px solid #edd84e;
+    border-right:2px solid transparent;
+    border-top:2px solid transparent;
+    border-bottom:2px solid transparent;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    box-sizing: border-box;
+
+}
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=name]{
+    width:50%;
+    padding:20px;
+    margin-top:10px;
+    background-color: transparent;
+    height:40px;
+    border-left:2px solid transparent;
+    border-right:2px solid transparent;
+    border-top:2px solid transparent;
+    border-bottom:2px solid transparent;
+    font-size:18px;
+    box-sizing: border-box;
+    color:#edd84e;
+}
+
+input[type=submit]{
+    width:20%;
+    margin-top:10px;
+    background-color: transparent;
+    height:40px;
+    border:none;
+    outline:none;
+    font-size:18px;
+    box-sizing: border-box;
+    display: block;
+    color:#edd84e;
+    background-color:#384047;
+
+
+}
+
+.but{
+    display: block;
+    float: left;
+    margin-top:20px;
+    padding:20px;
+    background-color: #edd84e;
+
+
+}
+a.but:active{
+    background-color: #384047;
+    color:#edd84e;
+
+}

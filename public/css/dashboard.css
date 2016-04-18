@@ -1,0 +1,53 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:500,400,300);
+body{
+    font-family: 'Open Sans';
+    font-weight: 400;
+    background:#fafafa;
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: 500;
+}
+.subnav a{
+    color: #384047;
+    text-decoration: none;
+}
+.subnav{
+    margin-top:40px;
+
+  }
+.subnav ul{
+    list-style-type: none;
+    float:right;
+
+
+}
+.subnav ul li{
+    display: inline;
+
+}
+.subnav ul li a {
+    padding:20px;
+    height:30px;
+
+    margin-right:10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+
+}
+.subnav ul li a:hover{
+    background-color:#384047;
+    color:#edd84e;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+

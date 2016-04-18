@@ -6,7 +6,7 @@ gulp.task('inject', function () {
     var gulpInject = require('gulp-inject');
     var wiredep = require('wiredep').stream;
     //Mentioning where are *our* source files to inject
-    var gulpInjectSrc = gulp.src(['./public/css/*.css', 'public/js/*.js', 'public/js/**/*.js'], {
+    var gulpInjectSrc = gulp.src(['public/js/*.js', 'public/js/**/*.js'], {
         read: false
     });
     //Asking gulp to ignore the path-prefix when injecting
