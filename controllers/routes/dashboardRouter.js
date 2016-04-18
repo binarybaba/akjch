@@ -60,9 +60,18 @@ dashboardRouter.route('/user/portfolios')
         if(req.user){
             console.log(req.body); // [{ name: 'this', stocks: [ 'DDD', 'WUBA' ] }]
             var url = 'mongodb://localhost:27017/akjch';
-            
+            console.log('user id is '+req.user._id);
+            mongodb.connect(url, function(err,db){
+                var Users = db.collection('users');
+                Users.updateOne(
+                    { username: req.user.username },
+                    { $push: { portfolios:req.body }}
+                    //TODO: Add portfolios:[] in database when creating user and convert [{}.{}] to {},{} to be insert
+                );
+            });
 
-            res.send('got it');
+
+
         }
     })
     /*TODO: Add post route and update to model*/

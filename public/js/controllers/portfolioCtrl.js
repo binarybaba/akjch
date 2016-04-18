@@ -87,7 +87,7 @@ angular.module('akjch')
                 data:$scope.tempPortfolios
             }).then(function(response){
                 console.log(response);
-                $scope.tempPortfolios=[];
+                $scope.tempPortfolios=[]; 
             })
 
         }
