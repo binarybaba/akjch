@@ -6,7 +6,7 @@ var util = require('util');
 /*var stockList = require('../../model/stocklist.js');*/
 
 
-
+//TODO: figure out a way to catch all routes for !req.user and redirect to / else next() and refactor
 dashboardRouter.route('/')
     .get(function(req, res){
         if(req.user) {
@@ -20,6 +20,7 @@ dashboardRouter.route('/')
             res.redirect('/');
         }
     });
+
 dashboardRouter.route('/logout')
     .get(function(req, res){
         req.logOut();
@@ -27,6 +28,7 @@ dashboardRouter.route('/logout')
     });
 
 dashboardRouter.route('/stocklist')
+
     .get(function(req, res,next){
         var stocks=[];
         if(req.user){
@@ -41,40 +43,71 @@ dashboardRouter.route('/stocklist')
                 });
 
             });
-
-            /*res.json(req.user.portfolio);*/
-            /*res.send(stockList);*/
-     }
+        }
         else{
             res.redirect('/');
         }
     });
 
 dashboardRouter.route('/user/portfolios')
+
     .get(function(req, res){
         if(req.user){
-            res.send('users portfolios');
+            var url = 'mongodb://localhost:27017/akjch'
+            mongodb.connect(url, function(err, db){
+                var cursor = db.collection('users').findOne({username:req.user.username}, function(err, document){
+                    //console.log(document);
+                    res.send(document.portfolios);
+                    db.close();
+                });
+            })
+        }
+        else{
+            res.redirect('/');
         }
     })
+
     .post(function(req, res){
-        if(req.user){
-            console.log(req.body); // [{ name: 'this', stocks: [ 'DDD', 'WUBA' ] }]
-            var url = 'mongodb://localhost:27017/akjch';
-            console.log('user id is '+req.user._id);
-            mongodb.connect(url, function(err,db){
-                var Users = db.collection('users');
-                Users.updateOne(
-                    { username: req.user.username },
-                    { $push: { portfolios:req.body }}
-                    //TODO: Add portfolios:[] in database when creating user and convert [{}.{}] to {},{} to be insert
-                );
-            });
+        if(req.user) {
+            //console.log(req.body); // [{ name: 'this', stocks: [ 'DDD', 'WUBA' ] }]
 
-
+                var url = 'mongodb://localhost:27017/akjch';
+                console.log('user id is ' + req.user._id);
+                mongodb.connect(url, function (err, db) {
+                    var Users = db.collection('users');
+                    //TODO: if portfolio already exists, dont add
+                    req.body.forEach(function (elem) {
+                        Users.updateOne(
+                            {username: req.user.username},
+                            {$push: {portfolios: elem}}
+                        );
+                    });
+                });
+                res.send('Added documents to collection');
 
         }
+
+        else{
+            res.redirect('/');
+        }
+
     })
-    /*TODO: Add post route and update to model*/
+
+    .put(function(req, res){
+        var url = 'mongodb://localhost:27017/akjch'
+        mongodb.connect(url, function(err, db){
+            var Users = db.collection('users');
+            Users.update(
+                {username:req.user.username},
+                { $pull : {portfolios : { name:req.body.name }}}, function(err, d){
+                    console.log('done');
+                    res.send('ok');
+
+                }
+            )
+        })
+    })
+
 
 
 
