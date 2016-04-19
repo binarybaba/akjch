@@ -99,31 +99,7 @@ dashboardRouter.route('/historical-data')
             })
             
 
-            /*var options={
-                host:'marketdata.websol.barchart.com',
-                path:'/getHistory.json?key='+process.env.BARCHARTKEY+'&symbol=MMM&type=daily&startDate='+startDate,
-                method:'GET',
-                headers:{
-                    'Content-Type':'application/json'
-                }
-            }
-            http.get(options, function(response){
-                var output = '';
-                response.setEncoding('utf8');
-                response.on('data', function(data){
-                    output += data;
-                });
-                response.on('end', function(){
-                    var obj = JSON.parse(output);
-                    console.log(obj);
-                    res.send(obj);
-                });
-                response.on('error', function(){
-                    console.log('Cant connect.');
-                })
-            }) // works*/
-
-
+          
         }
         else{
             res.redirect('/');
@@ -150,8 +126,6 @@ dashboardRouter.route('/user/portfolios')
 
     .post(function(req, res){
         if(req.user) {
-            //console.log(req.body); // [{ name: 'this', stocks: [ 'DDD', 'WUBA' ] }]
-
                 var url = 'mongodb://localhost:27017/akjch';
                 console.log('user id is ' + req.user._id);
                 mongodb.connect(url, function (err, db) {

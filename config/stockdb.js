@@ -12,7 +12,7 @@ module.exports = function(){
         newSheet.push({
             "name":worksheet["B"+i].v,
             "ticker":worksheet["A"+i].v,
-            "weight":Math.random() * (100 -10) + 10 //random weight because you guys said use random weights
+            "weight":Math.random() * (100 -10) + 10 
         });
     }
     require('./pushtodb.js')(newSheet);

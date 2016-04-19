@@ -21,29 +21,3 @@ var res=[];
 return res;
 };
 
-
-/*
-
-
-var stocklist = [
-{
-    "name" : "NASDAQ",
-    "ticker" : "^IXIC",
-    "weight" : 49.50159783475101
-},
-{
-
-    "name" : "S&P 500",
-    "ticker" : "SPYV",
-    "weight" : 61.16700223181397
-},
-{
-
-    "name" : "3D Systems Corporation",
-    "ticker" : "DDD",
-    "weight" : 45.229717968031764
-},
-
-];
-*/
-

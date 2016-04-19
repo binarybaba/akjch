@@ -1,6 +1,6 @@
 angular.module('akjch')
     .factory('portfolioFactory', ['$http', function($http){
-        var url = '/dashboard/user/portfolios'
+        var url = '/dashboard/user/portfolios';
         var portfolioSvcs = {
             getPortfolioList: function(){
                 var promise = $http({

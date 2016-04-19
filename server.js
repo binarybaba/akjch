@@ -13,7 +13,7 @@ var dashboardRouter = require('./controllers/routes/dashboardRouter'),
     authRouter = require('./controllers/routes/authRouter');
 
 
-/*TODO: compare portfolio button -> send to Highstock. Figure out a way to add a directive to angular or do it vanilla if there's no time*/
+
 
 /*Wiring up middlewares*/
 app.use(express.static('public'));
