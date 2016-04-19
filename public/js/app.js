@@ -1,4 +1,4 @@
-angular.module('akjch', ['ui.router', 'angular-toArrayFilter'])
+angular.module('akjch', ['ui.router', 'angular-toArrayFilter', 'highcharts-ng'])
 
 
 
@@ -23,6 +23,11 @@ angular.module('akjch', ['ui.router', 'angular-toArrayFilter'])
                 url:'/portfolios',
                 templateUrl:'/partials/portfolios.html',
                 controller:'portfoliosCtrl'
+            })
+            .state('compare',  {
+                url:'/compare',
+                templateUrl:'/partials/compare.html',
+                controller:'compareCtrl'
             })
 
     })
