@@ -1,0 +1,23 @@
+<div class="saved-portfolios col-sm-3">
+    <h3 ng-if="portfolios.length">Your Portfolios</h3>
+    <h4 class="alert-user" ng-if="!portfolios.length">You do not have any Portfolios.</h4>
+    <hr>
+    <h4 ng-if="!portfolios.length">Click on Portfolios uptop and add some</h4>
+
+    <div>
+        <ul ng-repeat ="portfolio in portfolios" style="list-style: none;">
+            <li class="userP">{{portfolio.name}}</li>
+            <li>
+                <ul class="userstocks" ng-repeat ="stock in portfolio.stocks">
+                    <li class="userstock">{{stock}}</li>
+                </ul>
+            </li>
+            <li><a href="#!" ng-click="getHistory(portfolio.stocks)">Historical Data</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="col-sm-4">
+    <h5 class="text-center">Historical Comparison</h5>
+    <highchart id="chart1" config="chartConfig"></highchart>
+</div>
