@@ -1,18 +1,42 @@
-angular.module('akjch')
-    .controller('compareCtrl', ['$scope', 'portfolioFactory', function($scope, portfolioFactory){
+//TODO: Figure out a way to add more data in the tooltip if time is left. Don't get lost in the API
+//TODO: See if you can fix rangeSelector to show right.
+//TODO: figure out a way to make input dates better
 
+angular.module('akjch')
+    .controller('compareCtrl', ['$scope', 'portfolioFactory', 'stockFactory',function($scope, portfolioFactory, stockFactory){
+
+        $scope.chartloaded=false;
         function insertIntoSeries(symbol, cell){
-                console.log($scope.chartConfig.series);
+            $scope.chartConfig.series.forEach(function(series){
+                if(series.name === symbol){
+                    series.data.push([Date.parse(cell["timestamp"]),cell.close, {high:cell.high}]);
+
+
+                   /* series.data.push({
+                        y: cell.close,
+                        high:cell.high,
+                        low:cell.low,
+                        day:cell.tradingDay,
+                        volume:cell.volume
+                    });*/
+                }
+            });
 
         }
         function drawChart(stocks, symList){
+            $scope.chartConfig.series = [];// clearing previous series
             console.log('trigger redrawing chart now');
             //Pre-adding only names in the series for better find for insertIntoSeries
             symList.forEach(function(symbol){
                 $scope.chartConfig.series.push({
-                    name:symbol
+                    name:symbol,
+                    data:[],
+                    high:'',
+                    low:'',
+                    volume:''
                 });
-            })
+            });
+            console.log($scope.chartConfig.series);
             stocks.forEach(function(elem){
                 var sym = elem.results[0].symbol;
                 elem.results.forEach(function(cell){
@@ -21,75 +45,98 @@ angular.module('akjch')
             })
 
         }
+
         //populate user's portfolio list
         portfolioFactory.getPortfolioList()
             .then(function success(response){
                 $scope.portfolios = response;
-            })
+            });
 
-        
+        //populate master stock list
+        stockFactory.getStockList()
+            .then(function(data){
+                $scope.MasterStocks = data;
+            });
+
         //get historical data
-        $scope.getHistory = function(stocks){
+        $scope.getHistory = function(stocks,portfolio){
             $scope.chartConfig.loading=true;
+            $scope.chartloaded=true;
+            $scope.chartConfig.title=portfolio;
             portfolioFactory.getHistoricalData(stocks)
                 .then(function(response){
                     var symList=[];
                     $scope.historicalData=response;
                     $scope.chartConfig.loading=false;
-                    console.log('>>>>>>>');
-                    console.log(response);
                     response.forEach(function(elem){
                         symList.push(elem.results[0].symbol);
-                    })
+
+                    });
+
                     drawChart(response, symList);
                     }, function err(){
                     console.log('Something went wrong');
                     });
             };
+        $scope.addIndividualStock = function(stock){
+            var data=[];
+            for(var i = 0; i< 251; i++ ) {
+                data.push((Math.random() * (210.20 - 152.20) + 210.20).toFixed(2));
+            }
+
+            $scope.chartConfig.series.push({
+                name:'Individual - '+stock,
+                data:data
+            });
+            $scope.ch = $scope.chartConfig.getHighcharts();
+            $scope.ch.redraw();
+        };
+
+
+
 
         $scope.chartConfig = {
             options: {
                 chart: {
-                    type: 'line'
+                    type: 'line',
+
                 },
-                rangeSelector:{
-                    selected:1
+                rangeSelector: {
+                    selected: 4
                 },
 
-                tooltip:{
-                    shared:true,
+                theme:{
+                    fill:"white",
+                    stroke:'silver',
+                    r:0,
+                    states:{
+                        hover:{
+                            fill:'#41739D',
+                            style:{
+                                color:'white'
+                            }
 
-                    formatter: function () {
-                        var s = $.each(this.points, function(i,point){
-                            return '<p>'+point.point.something+'</p><hr/>';
-                            //console.log(s);
-                        })
-                        return s.point.point.something;
-                        // TODO : Update with return of all keys of all series
                         }
+                    }
+
+                },
 
 
-                }
-
+             },
+            rangeSelector: {
+                selected: 4
             },
-            /*series: [{
-                name:'AHC',
-                data: [{y:10, something:'dwd'}, {y:15, something:1}, {y:12, something:2}, {y:8, something:3}, {y:7, something:4}]
-            },
-                {
-                    name:'demo2',
-                    data:[{y:8, something:1}, {y:16, something:9}, {y:27, something:8}, {y:19, something:7},{y:21, something:11}]
-                }],*/
             series:[],
             title: {
-                text: 'Hello'
+                text:''
             },
             loading: false,
             useHighStocks:true
-        }
-        
-        //initial date
+        };
+
+
+
         
 
-        //populate data from
-    }])
+
+    }]);

@@ -12,12 +12,33 @@
                     <li class="userstock">{{stock}}</li>
                 </ul>
             </li>
-            <li><a href="#!" ng-click="getHistory(portfolio.stocks)">Historical Data</a></li>
+            <li><a href="#!" ng-click="getHistory(portfolio.stocks, portfolio)">Historical Data</a></li>
 
         </ul>
     </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-6">
     <h5 class="text-center">Historical Comparison</h5>
     <highchart id="chart1" config="chartConfig"></highchart>
+</div>
+
+
+
+<div ng-if="chartloaded" class="addPortfolios col-sm-3">
+    <h4>Add Individual Portfolio to compare</h4>
+
+    <input type="text" name="portfolioName" ng-model="portfolioName" placeholder="Begin by typing your portfolio name">
+    <input type="text" ng-model="searchText" placeholder="type to search">
+    <div class="stocks">
+        <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
+            <li>
+                <ul class="stock">
+                    <li class="stock-ticker">{{stock.ticker}}</li>
+                    <li class="stock-name"><em>{{stock.name}}</em></li>
+                    <li><a href="#!" ng-click="addIndividualStock(stock.ticker)"><i class="fa fa-line-chart" aria-hidden="true"></i> Compare</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
 </div>
