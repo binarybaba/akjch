@@ -38,6 +38,20 @@ angular.module('akjch')
                     return response.data;
                 });
                 return promise;
+            },
+            getHistoricalData: function(portfolio){
+                var promise = $http({
+                    url:'/dashboard/historical-data',
+                    method:'POST',
+                    data:portfolio
+                }) .then(function success(response){
+                    console.log('success! '+response);
+                    return response.data;
+                }, function err(response){
+                    console.log('Something went wrong '+response.data);
+                    return response.data;
+                }) 
+                return promise;
             }
         }
 
