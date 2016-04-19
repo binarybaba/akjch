@@ -3,6 +3,11 @@ var dashboardRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var passport = require('passport');
 var util = require('util');
+var http = require('http');
+var startDate = require('../startDate.js');
+
+
+
 /*var stockList = require('../../model/stocklist.js');*/
 
 
@@ -48,6 +53,82 @@ dashboardRouter.route('/stocklist')
             res.redirect('/');
         }
     });
+
+dashboardRouter.route('/historical-data')
+    .post(function(req, res){
+        if(req.user){
+            console.log(req.body); //[ 'DDD', 'WBAI', 'AHC', 'ATEN' ]
+            var histories = [];
+            function onResult(results){
+                res.send(results);
+            }
+            function getHistory(symbol){
+                var options={
+                    host:'marketdata.websol.barchart.com',
+                    path:'/getHistory.json?key='+process.env.BARCHARTKEY+'&symbol='+symbol+'&type=daily&startDate='+startDate,
+                    method:'GET',
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                };
+                http.get(options, function(response){
+                    var output = '';
+                    response.setEncoding('utf8');
+                    response.on('data', function(data){
+                        output += data;
+                    });
+                    response.on('end', function(){
+                        var obj = JSON.parse(output);
+                        histories.push(obj);
+                        console.log(histories.length)
+                        if(req.body.length === histories.length){
+                            res.send(histories);
+                        }
+                        //res.send(obj);
+                    });
+                    response.on('error', function(){
+                        res.send('Cant connect');
+
+                    })
+                })
+
+
+            }
+            req.body.forEach(function(stock){
+            getHistory(stock);
+            })
+            
+
+            /*var options={
+                host:'marketdata.websol.barchart.com',
+                path:'/getHistory.json?key='+process.env.BARCHARTKEY+'&symbol=MMM&type=daily&startDate='+startDate,
+                method:'GET',
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            }
+            http.get(options, function(response){
+                var output = '';
+                response.setEncoding('utf8');
+                response.on('data', function(data){
+                    output += data;
+                });
+                response.on('end', function(){
+                    var obj = JSON.parse(output);
+                    console.log(obj);
+                    res.send(obj);
+                });
+                response.on('error', function(){
+                    console.log('Cant connect.');
+                })
+            }) // works*/
+
+
+        }
+        else{
+            res.redirect('/');
+        }
+    })
 
 dashboardRouter.route('/user/portfolios')
 
