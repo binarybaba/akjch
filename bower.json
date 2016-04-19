@@ -19,7 +19,8 @@
     "angular-ui-router": "^0.2.18",
     "bootstrap": "^3.3.6",
     "font-awesome": "fontawesome#^4.6.1",
-    "angular-toArrayFilter": "^1.0.1"
+    "angular-toArrayFilter": "^1.0.1",
+    "highcharts-ng": "^0.0.11"
   },
   "overrides": {
     "bootstrap": {
