@@ -7,7 +7,6 @@ angular.module('akjch')
                     url: url,
                     method: 'GET',
                 }).then(function success(response){
-                    console.log(response);
                     return response.data;
                 }, function err(response){
                     return response.data;
@@ -45,12 +44,10 @@ angular.module('akjch')
                     method:'POST',
                     data:portfolio
                 }) .then(function success(response){
-                    console.log('success! '+response);
                     return response.data;
                 }, function err(response){
-                    console.log('Something went wrong '+response.data);
                     return response.data;
-                }) 
+                })
                 return promise;
             }
         }
