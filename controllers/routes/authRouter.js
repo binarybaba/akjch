@@ -4,9 +4,7 @@ var express = require('express'),
     passport = require('passport');
 
 
-
-
-    authRouter.route('/signup')
+authRouter.route('/signup')
         .post(function(req, res){
             /*bodypraser will transform req into cool json*/
             console.log(req.body);
@@ -47,28 +45,14 @@ var express = require('express'),
             /*res.send('cool');*/
         })
 
-/*TODO: handle err. breaks when user signs in with invalid username/pass. Maybe do it manually rather than handing it over to passport?*/
-    authRouter.route('/signin')
+
+authRouter.route('/signin')
         .post(passport.authenticate('local', {
-            failureRedirect:'/signup',
+            failureRedirect:'/',
         }), function(req, res){
                 /*res.redirect('/auth/profile');*/
             res.redirect('/dashboard');
         });
-
-
-
-authRouter.route('/profile')
-    .get(function(req, res){
-        res.json(req.user); //once signed in, passport appends user object to the request
-    })
-
-
-
-authRouter.route('/dash')
-        .get(function(req, res){
-            res.json(req.user);
-        })
 
 module.exports = authRouter;
 

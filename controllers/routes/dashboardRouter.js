@@ -8,8 +8,6 @@ var startDate = require('../startDate.js');
 
 
 
-/*var stockList = require('../../model/stocklist.js');*/
-
 
 //TODO: figure out a way to catch all routes for !req.user and redirect to / else next() and refactor
 dashboardRouter.route('/')
