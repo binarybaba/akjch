@@ -3,13 +3,14 @@
 //TODO: figure out a way to make input dates better
 
 angular.module('akjch')
-    .controller('compareCtrl', ['$scope', 'portfolioFactory', 'stockFactory',function($scope, portfolioFactory, stockFactory){
-
+    .controller('compareCtrl', ['$scope', 'portfolioFactory', 'stockFactory', 'highchartsNG', function($scope, portfolioFactory, stockFactory, highchartsNG){
+        $scope.historySelected=false;
         $scope.chartloaded=false;
         function insertIntoSeries(symbol, cell){
             $scope.chartConfig.series.forEach(function(series){
                 if(series.name === symbol){
                     series.data.push([Date.parse(cell["timestamp"]),cell.close, {high:cell.high}]);
+
 
 
                    /* series.data.push({
@@ -63,6 +64,7 @@ angular.module('akjch')
         $scope.getHistory = function(stocks,portfolio){
             $scope.chartConfig.loading=true;
             $scope.chartloaded=true;
+            $scope.historySelected=true;
             $scope.chartConfig.title=portfolio;
             portfolioFactory.getHistoricalData(stocks)
                 .then(function(response){
@@ -81,18 +83,14 @@ angular.module('akjch')
                     });
             };
         $scope.addIndividualStock = function(stock){
-            var series = [];
             var data=[];
             var len = $scope.chartConfig.series[0].data.length;
             console.log('length is '+len);
-            //var startDate = $scope.chartConfig.series[0].data[0][0];
-            /*console.log($scope.chartConfig.series[0].data[0]);*/
-
             for(var i = 0; i< len;i++){
                 var dummy = [];
                 dummy.push($scope.chartConfig.series[0].data[i][0]); //date
-                dummy.push(parseFloat((Math.random() * (210.20 - 142.20) + 142.20).toFixed(2))); //datavalue
-                dummy.push({}); //experimental extra object
+                dummy.push(parseFloat((Math.random() * (20.20 - 10.20) + 10.20).toFixed(2))); //datavalue
+                dummy.push({}); //experimental extra object for tooltip
                 data.push(dummy);
             }
             $scope.chartConfig.series.push({
@@ -105,64 +103,45 @@ angular.module('akjch')
             console.log(series);
             console.log($scope.chartConfig.series);
 
-            /*for(var i = 0; i< len; i++ ) {
-                console.log($scope.chartConfig.series[0]);
-                /!*data.push((Math.random() * (210.20 - 152.20) + 210.20).toFixed(2));*!/
-            }*/
-
-            /*$scope.chartConfig.series.push({
-                name:'Individual - '+stock,
-                data:data
-            });*/
-            /*$scope.ch = $scope.chartConfig.getHighcharts();
-            $scope.ch.redraw();*/
         };
+        //TODO: Add toggle for individuals 
 
 
+        highchartsNG.ready(function(){
+            $scope.chartConfig = {
+                options: {
+                    chart: {
+                        type: 'line',
+                        zoomType: 'x'
 
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                    },
+                    navigator: {
+                        enabled: true,
+                        series: {
+                            data: []
+                        }
+                    },
+                    rangeSelector: {
+                        enabled: true,
+                        selected:4
 
-        $scope.chartConfig = {
-            options: {
-                chart: {
-                    type: 'line',
-
+                    },
                 },
                 rangeSelector: {
                     selected: 4
                 },
-
-                theme:{
-                    fill:"white",
-                    stroke:'silver',
-                    r:0,
-                    states:{
-                        hover:{
-                            fill:'#41739D',
-                            style:{
-                                color:'white'
-                            }
-
-                        }
-                    }
-
+                series:[],
+                title: {
+                    text:''
                 },
-
-
-             },
-            rangeSelector: {
-                selected: 4
-            },
-            series:[],
-            title: {
-                text:''
-            },
-            loading: false,
-            useHighStocks:true
-        };
-
-
-
-        
+                loading: false,
+                useHighStocks:true
+            };
+        }, this)
 
 
     }]);
