@@ -3,6 +3,9 @@ var passport = require('passport'),
     mongodb = require('mongodb');
 
 
+
+
+
 module.exports = function(){
     passport.use(new LocalStrategy({
         usernameField:'uname', // id/name of the field in the view
@@ -15,12 +18,25 @@ module.exports = function(){
                 "username":username,
                 "password":password
             }, function(err, results){
-                if(results.password === password){
+                if(err){
+                    return done(err);
+                }
+                if(!results){
+                    return done(null,false, {message:'That user doesnt exist'});
+                }
+                if(!results.password === password){
+                    return done(null, false, {message:'Incorrect Password'});
+                }
+                return done(null, results);
+
+                /*if(results.password === password){
                     var user = results;
                     done(null, user);
                 }else{
                     done(null, false, {message:'Bad Password'});
-                }
+                }*/
+
+
             });
         });
 
