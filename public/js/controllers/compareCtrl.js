@@ -36,7 +36,8 @@ angular.module('akjch')
                     volume:''
                 });
             });
-            console.log($scope.chartConfig.series);
+            console.log('chartcongif.series');
+            /*console.log($scope.chartConfig.series);*/
             stocks.forEach(function(elem){
                 var sym = elem.results[0].symbol;
                 elem.results.forEach(function(cell){
@@ -72,24 +73,49 @@ angular.module('akjch')
                         symList.push(elem.results[0].symbol);
 
                     });
-
+                   /* console.log('Got this response from getHistoricalData');
+                    console.log(response);*/
                     drawChart(response, symList);
                     }, function err(){
                     console.log('Something went wrong');
                     });
             };
         $scope.addIndividualStock = function(stock){
+            var series = [];
             var data=[];
-            for(var i = 0; i< 251; i++ ) {
-                data.push((Math.random() * (210.20 - 152.20) + 210.20).toFixed(2));
-            }
+            var len = $scope.chartConfig.series[0].data.length;
+            console.log('length is '+len);
+            //var startDate = $scope.chartConfig.series[0].data[0][0];
+            /*console.log($scope.chartConfig.series[0].data[0]);*/
 
+            for(var i = 0; i< len;i++){
+                var dummy = [];
+                dummy.push($scope.chartConfig.series[0].data[i][0]); //date
+                dummy.push(parseFloat((Math.random() * (210.20 - 142.20) + 142.20).toFixed(2))); //datavalue
+                dummy.push({}); //experimental extra object
+                data.push(dummy);
+            }
             $scope.chartConfig.series.push({
+                data:data,
+                high:'',
+                id:'individual-'+stock,
+                name:'Individual - '+stock,
+                volume:''
+            });
+            console.log(series);
+            console.log($scope.chartConfig.series);
+
+            /*for(var i = 0; i< len; i++ ) {
+                console.log($scope.chartConfig.series[0]);
+                /!*data.push((Math.random() * (210.20 - 152.20) + 210.20).toFixed(2));*!/
+            }*/
+
+            /*$scope.chartConfig.series.push({
                 name:'Individual - '+stock,
                 data:data
-            });
-            $scope.ch = $scope.chartConfig.getHighcharts();
-            $scope.ch.redraw();
+            });*/
+            /*$scope.ch = $scope.chartConfig.getHighcharts();
+            $scope.ch.redraw();*/
         };
 
 
