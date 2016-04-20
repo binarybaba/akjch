@@ -2,7 +2,7 @@
     <h4>Add portfolios</h4>
 
     <input type="text" name="portfolioName" ng-model="portfolioName" placeholder="Begin by typing your portfolio name">
-    <input type="text" ng-model="searchText" placeholder="type to search">
+    <input type="text" ng-model="searchText" placeholder="type name or trade name to search">
     <div class="stocks">
         <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
             <li>
