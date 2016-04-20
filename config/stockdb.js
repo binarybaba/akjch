@@ -1,6 +1,6 @@
 module.exports = function(){
     var xlsx = require('xlsx'),
-        workbook = xlsx.readFile('./stocks2.xlsx'),// TODO: replace with stocks.xlsx in production
+        workbook = xlsx.readFile('./stocks.xlsx'),// TODO: replace with stocks.xlsx in production
         sheet = workbook.SheetNames[0],
         worksheet = workbook.Sheets[sheet],
         ref = '!ref',
