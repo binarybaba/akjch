@@ -1,7 +1,7 @@
 **AKJ Dev Challenge Solution**
 ===================
 -----------------------------------------------------------
-A lightweight web app based on the MEAN to compare stock portfolios
+A lightweight web app based on the MEAN to compare stock portfolios.
 
 The app uses [Barchart's](http://www.barchart.com/) API to get historical data of stocks. All your portfolios get saved to Mongo.
 
@@ -10,9 +10,18 @@ ________
 **Setting it up**
 -------------
 
+1. Install MongoDB
+This app uses MongoDB as it's database. Head over to [MongoDB's download page](https://www.mongodb.org/downloads#production) and install the respective package for your box.
+
+2. Install Node
+You can find Node's package here on their [official website](https://nodejs.org/en/download/). It will install npm with it which you will need. 
+
+3. Do the Miscellaneous
+clone this repository in a folder and `$ npm install`
+
 Use the excel file to extract and populate the database (follow the format in stocks.xlsx if you're planning to put your own file). Head over to [Barchart's free market data api](http://www.barchartondemand.com/freemarketdataapi.php) and create an account. They'll send you the API key in your email.
 
-For development environment, goto `gulpfile.js` and put the key in the respected field-
+For development or testing environment, goto `gulpfile.js` and put the key in the respected field-
 
     gulp.task('serve', ['inject'], function () {
         var options = {
