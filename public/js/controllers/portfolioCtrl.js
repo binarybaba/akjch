@@ -96,7 +96,7 @@ angular.module('akjch')
                 }, function err(response){
                     console.log('something went wrong: '+response.data);
                 })
-        }
+        };
         $scope.updatePortfolios = function(){
             portfolioFactory.postPortfolios($scope.tempPortfolios)
                 .then(function(response){
