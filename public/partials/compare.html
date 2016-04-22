@@ -9,40 +9,47 @@
             <li class="userP">{{portfolio.name}}</li>
             <li>
                 <ul class="userstocks" ng-repeat ="stock in portfolio.stocks">
-                    <li class="userstock">{{stock}}</li>
+                    <li class="userstock"><a href="#!" ng-click="getMoreDetails(stock)">{{stock}}</a></li>
                 </ul>
             </li>
             <li><a href="#!" ng-click="getHistory(portfolio.stocks, portfolio)">Historical Data</a></li>
 
         </ul>
     </div>
+    <div ng-if="!chartConfig.loading && chartloaded && !stockChartSelected" class="addPortfolios">
+        <h4>Add Individual Stock to compare</h4>
+
+        <input type="text" ng-model="searchText" placeholder="type to search">
+        <div class="stocks">
+            <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
+                <li>
+                    <ul class="stock">
+                        <li class="stock-ticker">{{stock.ticker}}</li>
+                        <li class="stock-name"><em>{{stock.name}}</em></li>
+                        <li><a href="#!" ng-click="addIndividualStock(stock.ticker)"><i class="fa fa-line-chart" aria-hidden="true"></i> Compare</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
-<div ng-if="!historySelected" class="intro col-sm-6">
+
+
+
+<div ng-if="!portfolioChartSelected && !stockChartSelected" class="intro col-sm-9">
     <h1 class="text-center">Compare Historical Data</h1>
     <p>Select your portfolios to see the historical data of your stocks. You can then add individual stocks and compare
     them along with your portfolios.</p>
 </div>
-<div ng-if="historySelected" class="col-sm-6">
-    <highchart id="chart1" config="chartConfig"></highchart>
+
+<div ng-if="portfolioChartSelected" class="col-sm-9">
+    <highchart id="chart1" config="portfolioChartConfig"></highchart>
+</div>
+<div ng-if="stockChartSelected" class="col-sm-9">
+    <highchart id="chart2" config="stockChartConfig"></highchart>
 </div>
 
 
 
 <!--List of stocks-->
-<div ng-if="!chartConfig.loading && chartloaded" class="addPortfolios col-sm-3">
-    <h4>Add Individual Stock to compare</h4>
-
-    <input type="text" ng-model="searchText" placeholder="type to search">
-    <div class="stocks">
-        <ul ng-repeat="stock in MasterStocks | toArray | filter: searchText">
-            <li>
-                <ul class="stock">
-                    <li class="stock-ticker">{{stock.ticker}}</li>
-                    <li class="stock-name"><em>{{stock.name}}</em></li>
-                    <li><a href="#!" ng-click="addIndividualStock(stock.ticker)"><i class="fa fa-line-chart" aria-hidden="true"></i> Compare</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-</div>
