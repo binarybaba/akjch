@@ -29,7 +29,8 @@ angular.module('akjch', ['ui.router', 'angular-toArrayFilter', 'highcharts-ng'])
                 templateUrl:'/partials/compare.html',
                 controller:'compareCtrl'
             })
+            
 
-    })
+    });
 
 
