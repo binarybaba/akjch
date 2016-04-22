@@ -6,7 +6,6 @@ angular.module('akjch')
                     url: '/dashboard/stocklist',
                     method:'GET'
                 }).then(function(response){
-                        console.log(response);
                         return response.data;
                     });
                 return promise;
