@@ -166,7 +166,7 @@ angular.module('akjch')
                             td= this.point.tradingDay,
                             v= this.point.volume;
                         
-                        return td+'<br>High: <span style="color:green">' +h+ '</span><br>Low: <b>'+l+'</b><br>Open :<b>'+o+'</b><br>Volume: <b>'+v+'</b>';
+                        return '<em>'+td+'</em><br> High: <span style="color:#3E6617">'+h+'</span><br> Low: <span style="color:#991818">'+l+'</span><br> Open: <span style="color:#556D7D">'+o+'</span><br> Volume: <span style="color:#4A4C4D">'+v+'</span>'
                     }
                 }
 

@@ -2,17 +2,17 @@
     <h3 ng-if="portfolios.length">Your Portfolios</h3>
     <h4 class="alert-user" ng-if="!portfolios.length">You do not have any Portfolios.</h4>
     <hr>
-    <h4 ng-if="!portfolios.length">Click on Portfolios uptop and add some</h4>
+    <h4 ng-if="!portfolios.length">Click <a href="#!" ui-sref="portfolios">here</a> to create one</h4>
 
     <div>
         <ul ng-repeat ="portfolio in portfolios" style="list-style: none;">
-            <li class="userP">{{portfolio.name}}</li>
+            <li class="userP"><a href="#!" ng-click="getHistory(portfolio.stocks, portfolio)" >{{portfolio.name}}</a></li>
             <li>
                 <ul class="userstocks" ng-repeat ="stock in portfolio.stocks">
                     <li class="userstock"><a href="#!" ng-click="getMoreDetails(stock)">{{stock}}</a></li>
                 </ul>
             </li>
-            <li><a href="#!" ng-click="getHistory(portfolio.stocks, portfolio)">Historical Data</a></li>
+
 
         </ul>
     </div>
@@ -37,10 +37,14 @@
 
 
 
-<div ng-if="!portfolioChartSelected && !stockChartSelected" class="intro col-sm-9">
-    <h1 class="text-center">Compare Historical Data</h1>
-    <p>Select your portfolios to see the historical data of your stocks. You can then add individual stocks and compare
-    them along with your portfolios.</p>
+<div ng-if="!portfolioChartSelected && !stockChartSelected" class="alert-user compare col-sm-9">
+    <h4>Compare Historical Data</h4>
+    <hr>
+    <p>This is where you can do a comprehensive analysis of your portfolios.
+        <br>
+        Click on your portfolio names to see their historical data, add more stocks from the list to see a versus comparison.
+        <br>
+        You can also click on individual stocks in your portfolio to see just their results.</p>
 </div>
 
 <div ng-if="portfolioChartSelected" class="col-sm-9">

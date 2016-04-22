@@ -20,6 +20,16 @@
 
 <!--User's Unsaved Portfolios-->
 <div class="col-sm-6 unsaved">
+    <div class="alert-user" ng-if="!tempPortfolios.length">
+        <h4>This is where you can add new portfolios or delete old ones</h4>
+        <hr>
+        <p>To add a new portfolio, start by naming your portfolio under 'Add Portfolios' section, then, select the
+        stocks you would like to add. You can also type the name of the stock or the trade name to filter through the list.
+            After you're done, don't forget to save them.</p>
+        <p>You can create as many portfolios as you like.</p>
+
+    </div>
+
     <ul ng-repeat = "portfolio in tempPortfolios">
             <div class="temp-portfolio">
                 <a class="deleteP" href="#" ng-click="removePortfolio(portfolio.name)"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a>
@@ -36,9 +46,7 @@
 <!--User's Saved portfolios-->
 <div class="saved-portfolios col-sm-3">
     <h3 ng-if="userPortfolios.length">Your Portfolios</h3>
-    <h4 class="alert-user"ng-if="!userPortfolios.length">You do not have any Portfolios.</h4>
-    <hr>
-    <h4 ng-if="!userPortfolios.length">Let's begin by adding one</h4>
+
 
     <div class="user-portfolio">
     <ul class="user-portfolios" ng-repeat = "portfolio in userPortfolios">

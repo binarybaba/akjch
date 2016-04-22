@@ -14,15 +14,45 @@
 </head>
 <body>
 <header>
-    <nav class="container-fluid">
-        <% include ../partials/subnav.ejs%>
-    </nav>
-    <h2 class="text-center"><span id="user"><%=name%></span>'s Dashboard</h2>
+    <div class="soft-nav">
+            <ul>
+                <li><a href="#!" ui-sref="portfolios">Portfolios</a></li>
+                <li><a href="#!" ui-sref="compare">Compare Portfolios</a></li>
+                <li><a href="/dashboard/logout">Logout</a></li>
+            </ul>
+    </div>
+    <div class="user">
+        <span><%=name%></span>
+    </div>
+
 
 </header>
-<section class="portfolio container-fluid">
+<section class="container-fluid">
     <div class="row">
-        <div ui-view></div>
+        <div ui-view>
+            <h1 class="welcome">Hi, <span><%=name.split(' ')[0]%></span></h1>
+            <p class="subtext">How would you like to begin?</p>
+
+            <div class="cards col-sm-3 col-sm-offset-2" ui-sref="portfolios">
+                <div class="portfolio card">
+                    <div class="ico"></div>
+                    <h4>Portfolios</h4>
+                    <p>Add, view or edit your existing portfolios from our list of stocks.
+                    </p>
+
+                </div>
+            </div>
+            <div class="cards col-sm-3 col-sm-offset-2" ui-sref="compare">
+                <div class="compare card">
+                    <div class="ico"></div>
+                    <h4>Compare</h4>
+                    <p>Compare the historic data of your portfolios or
+                        see the status of any stock.
+                    </p>
+
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <!--<br>
