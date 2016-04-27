@@ -1,4 +1,4 @@
-**AKJ Dev Challenge Solution**
+**AKJCH**
 ===================
 -----------------------------------------------------------
 A lightweight web app based on the MEAN to compare stock portfolios.
