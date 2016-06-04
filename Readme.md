@@ -1,4 +1,4 @@
-**AKJCH**
+**STOCKER**
 ===================
 -----------------------------------------------------------
 A lightweight web app based on the MEAN to compare stock portfolios.
